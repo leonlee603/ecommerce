@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 
 // export const metadata = {
 //   title: "Home",
@@ -7,7 +6,7 @@ import { Button } from "@/components/ui/button";
 export default function page() {
   return (
     <div>
-      <Button>Button</Button>
+      This is just a Home page
     </div>
   )
 }
