@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 import ProductPrice from "@/components/shared/product/ProductPrice";
-import { getProductBySlug } from "@/lib/actions/product.action";
+import { getProductBySlug } from "@/lib/actions/product.actions";
 import ProductImages from "@/components/shared/product/ProductImages";
 
 export default async function page({
