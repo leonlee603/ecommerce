@@ -9,7 +9,7 @@ import { getLatestProducts } from "@/lib/actions/product.action";
 export default async function page() {
   const latestProducts = await getLatestProducts()
 
-  // console.log(data)
+  // console.log(latestProducts)
   // return data;
   return (
     <>
