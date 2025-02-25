@@ -6,7 +6,7 @@ import { getLatestProducts } from "@/lib/actions/product.actions";
 //   title: "Home",
 // };
 
-export default async function page() {
+export default async function Page() {
   const latestProducts = await getLatestProducts()
 
   // console.log(latestProducts)
