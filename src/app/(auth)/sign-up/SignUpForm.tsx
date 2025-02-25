@@ -28,7 +28,7 @@ export default function SignUpForm () {
             id="name"
             name="name"
             type="text"
-            required
+            // required
             autoComplete="name"
             defaultValue={signUpDefaultValues.name}
           />
@@ -38,8 +38,8 @@ export default function SignUpForm () {
           <Input
             id="email"
             name="email"
-            type="email"
-            required
+            type="text"
+            // required
             autoComplete="email"
             defaultValue={signUpDefaultValues.email}
           />
@@ -50,7 +50,7 @@ export default function SignUpForm () {
             id="password"
             name="password"
             type="password"
-            required
+            // required
             autoComplete="password"
             defaultValue={signUpDefaultValues.password}
           />
@@ -61,7 +61,7 @@ export default function SignUpForm () {
             id="confirmPassword"
             name="confirmPassword"
             type="password"
-            required
+            // required
             autoComplete="confirmPassword"
             defaultValue={signUpDefaultValues.confirmPassword}
           />
