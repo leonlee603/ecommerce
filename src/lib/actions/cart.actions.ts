@@ -7,7 +7,7 @@ import { auth } from "../../../auth";
 import { prisma } from "@/db/prisma";
 import { CartItem } from "../../../types";
 import { convertToPlainObject, formatError, round2 } from "../utils";
-import { cartItemSchema, insertCartSchema } from "../validator";
+import { cartItemSchema, insertCartSchema } from "../validators";
 
 export async function addItemToCart(data: CartItem) {
   try {
