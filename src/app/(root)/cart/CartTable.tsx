@@ -5,7 +5,7 @@ import { useTransition } from 'react';
 import { toast } from 'sonner';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, Minus, Plus } from 'lucide-react';
+import { ArrowRight, Loader, Minus, Plus } from 'lucide-react';
 import {
   Table,
   TableBody,
@@ -112,8 +112,7 @@ export default function CartTable({ cart }: { cart?: Cart }) {
                 </span>
               </div>
               <Button className="w-full" disabled={isPending} onClick={() => startTransition(() => router.push("/shipping-address"))}>
-                {/* {isPending ? (<Loader className="h-4 w-4 animate-spin"/>) : (<ArrowRight className="h-4 w-4" />)} */}
-                <ArrowRight className="h-4 w-4" /> Proceed to Checkout
+                {isPending ? (<Loader className="h-4 w-4 animate-spin"/>) : (<ArrowRight className="h-4 w-4" />)} Proceed to Checkout
               </Button>
             </CardContent>
           </Card>
