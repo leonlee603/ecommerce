@@ -87,29 +87,29 @@ export const config = {
           });
         }
 
-        if (["signIn", "signUp"].includes(trigger)) {
+        if (trigger === "signIn" || trigger === "signUp") {
           const cookiesObject = await cookies();
           const sessionCartId = cookiesObject.get("sessionCartId")?.value;
 
-          if (!sessionCartId) return;
-
-          const sessionCart = await prisma.cart.findFirst({
-            where: { sessionCartId },
-          });
-
-          if (!sessionCart) return;
-
-          if (sessionCart.userId !== user.id) {
-            // Delete current user cart
-            await prisma.cart.deleteMany({
-              where: { userId: user.id },
+          if (sessionCartId) {
+            const sessionCart = await prisma.cart.findFirst({
+              where: { sessionCartId },
             });
 
-            // Assign new cart
-            await prisma.cart.update({
-              where: { id: sessionCart.id },
-              data: { userId: user.id },
-            });
+            if (!sessionCart) return token;
+
+            if (sessionCart.userId !== user.id) {
+              // Delete current user cart
+              await prisma.cart.deleteMany({
+                where: { userId: user.id },
+              });
+
+              // Assign new cart
+              await prisma.cart.update({
+                where: { id: sessionCart.id },
+                data: { userId: user.id },
+              });
+            }
           }
         }
       }
