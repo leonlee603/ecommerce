@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-// import Pagination from "@/components/shared/pagination";
+import Pagination from "@/components/shared/Pagination";
 
 export const metadata: Metadata = {
   title: "My Orders",
@@ -67,12 +67,12 @@ export default async function page(props: {
             ))}
           </TableBody>
         </Table>
-        {/* {orders.totalPages > 1 && (
+        {orders.totalPages > 1 && (
           <Pagination
             page={Number(page) || 1}
             totalPages={orders?.totalPages}
           />
-        )} */}
+        )}
       </div>
     </div>
   );
