@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { getMyOrders } from "@/lib/actions/order.actions";
-import { formatCurrency, formatDateTime, formatId } from "@/lib/utils";
+import { formatCurrency, formatId } from "@/lib/utils";
 import Link from "next/link";
 import {
   Table,
@@ -11,6 +11,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Pagination from "@/components/shared/Pagination";
+import OrderDateTimeTableCell from "./OrderDateTimeTableCell";
 
 export const metadata: Metadata = {
   title: "My Orders",
@@ -45,18 +46,22 @@ export default async function page(props: {
               <TableRow key={order.id}>
                 <TableCell>{formatId(order.id)}</TableCell>
                 <TableCell>
-                  {formatDateTime(order.createdAt).dateTime}
+                  <OrderDateTimeTableCell date={order.createdAt} />
                 </TableCell>
                 <TableCell>{formatCurrency(order.totalPrice)}</TableCell>
                 <TableCell>
-                  {order.isPaid && order.paidAt
-                    ? formatDateTime(order.paidAt).dateTime
-                    : "Not Paid"}
+                  {order.isPaid && order.paidAt ? (
+                    <OrderDateTimeTableCell date={order.paidAt} />
+                  ) : (
+                    "Not Paid"
+                  )}
                 </TableCell>
                 <TableCell>
-                  {order.isDelivered && order.deliveredAt
-                    ? formatDateTime(order.deliveredAt).dateTime
-                    : "Not Delivered"}
+                  {order.isDelivered && order.deliveredAt ? (
+                    <OrderDateTimeTableCell date={order.deliveredAt} />
+                  ) : (
+                    "Not Delivered"
+                  )}
                 </TableCell>
                 <TableCell>
                   <Link href={`/order/${order.id}`}>
