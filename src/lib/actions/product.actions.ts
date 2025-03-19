@@ -43,6 +43,7 @@ export async function getAllProducts({
   // rating?: string;
   // sort?: string;
 }) {
+  console.log("log: ", query, category);
   // // Query filter
   // const queryFilter: Prisma.ProductWhereInput =
   //   query && query !== 'all'
