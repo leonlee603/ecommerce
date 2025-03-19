@@ -20,7 +20,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import { createProduct, updateProduct } from "@/lib/actions/product.actions";
-// import { UploadButton } from "@/lib/uploadthing";
+import { UploadButton } from "@/lib/uploadthing";
 import { Card, CardContent } from "../ui/card";
 import Image from "next/image";
 import { Checkbox } from "../ui/checkbox";
@@ -257,7 +257,7 @@ export default function ProductForm({
                         />
                       ))}
                       <FormControl>
-                        {/* <UploadButton
+                        <UploadButton
                           endpoint="imageUploader"
                           onClientUploadComplete={(res: { url: string }[]) => {
                             form.setValue("images", [...images, res[0].url]);
@@ -267,7 +267,7 @@ export default function ProductForm({
                               description: `ERROR! ${error.message}`,
                             });
                           }}
-                        /> */}
+                        />
                       </FormControl>
                     </div>
                   </CardContent>
@@ -307,7 +307,7 @@ export default function ProductForm({
                 />
               )}
 
-              {/* {isFeatured && !banner && (
+              {isFeatured && !banner && (
                 <UploadButton
                   endpoint="imageUploader"
                   onClientUploadComplete={(res: { url: string }[]) => {
@@ -319,7 +319,7 @@ export default function ProductForm({
                     });
                   }}
                 />
-              )} */}
+              )}
             </CardContent>
           </Card>
         </div>
