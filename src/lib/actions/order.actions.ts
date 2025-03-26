@@ -348,35 +348,41 @@ export async function getOrderSummary() {
 export async function getAllOrders({
   limit = PAGE_SIZE,
   page,
-  // query,
+  query,
 }: {
   limit?: number;
   page: number;
-  // query: string;
+  query: string;
 }) {
-  // const queryFilter: Prisma.OrderWhereInput =
-  //   query && query !== 'all'
-  //     ? {
-  //         user: {
-  //           name: {
-  //             contains: query,
-  //             mode: 'insensitive',
-  //           } as Prisma.StringFilter,
-  //         },
-  //       }
-  //     : {};
+  const queryFilter: Prisma.OrderWhereInput =
+    query && query !== 'all'
+      ? {
+          user: {
+            name: {
+              contains: query,
+              mode: 'insensitive',
+            } as Prisma.StringFilter,
+          },
+        }
+      : {};
 
   const data = await prisma.order.findMany({
-    // where: {
-    //   ...queryFilter,
-    // },
+    where: {
+      ...queryFilter,
+    },
     orderBy: { createdAt: 'desc' },
     take: limit,
     skip: (page - 1) * limit,
     include: { user: { select: { name: true } } },
   });
 
-  const dataCount = await prisma.order.count();
+  const filteredData = query && query !== 'all' ? await prisma.order.findMany({
+    where: {
+      ...queryFilter,
+    },
+  }) : [];
+
+  const dataCount = query && query !== 'all' ? filteredData.length : await prisma.order.count();
 
   return {
     data,
