@@ -1,19 +1,26 @@
+import ProductCarousel from "@/components/shared/product/ProductCarousel";
 import ProductList from "@/components/shared/product/ProductList";
-// import sampleData from "@/db/sample-data";
-import { getLatestProducts } from "@/lib/actions/product.actions";
+import {
+  getFeaturedProducts,
+  getLatestProducts,
+} from "@/lib/actions/product.actions";
 
 // export const metadata = {
 //   title: "Home",
 // };
 
 export default async function Page() {
-  const latestProducts = await getLatestProducts()
+  const latestProducts = await getLatestProducts();
+  const featuredProducts = await getFeaturedProducts();
 
   // console.log(latestProducts)
   // return data;
   return (
     <>
-    <ProductList data={latestProducts} title="Newest Arrivals" limit={4}/>
+      {featuredProducts.length > 0 && (
+        <ProductCarousel data={featuredProducts} />
+      )}
+      <ProductList data={latestProducts} title="Newest Arrivals" limit={4} />
     </>
-  )
+  );
 }
