@@ -7,6 +7,8 @@ import { getProductBySlug } from "@/lib/actions/product.actions";
 import ProductImages from "@/components/shared/product/ProductImages";
 import AddToCart from "@/components/shared/product/AddToCart";
 import { getMyCart } from "@/lib/actions/cart.actions";
+import { auth } from "../../../../../auth";
+import ReviewList from "./ReviewList";
 
 export default async function page({
   params,
@@ -17,6 +19,9 @@ export default async function page({
   
   const product = await getProductBySlug(slug);
   if (!product) notFound();
+
+  const session = await auth();
+  const userId = session?.user?.id;
 
   const cart = await getMyCart();
 
@@ -84,6 +89,14 @@ export default async function page({
             </Card>
           </div>
         </div>
+      </section>
+      <section className='mt-10'>
+        <h2 className='h2-bold mb-5'>Customer Reviews</h2>
+        <ReviewList
+          userId={userId || ''}
+          productId={product.id}
+          productSlug={product.slug}
+        />
       </section>
     </>
   );
