@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/card';
 import { Calendar, User } from 'lucide-react';
 import { formatDateTime } from '@/lib/utils';
-// import Rating from '@/components/shared/product/rating';
+import Rating from "@/components/shared/product/Rating";
 
 export default function ReviewList({
   userId,
@@ -30,8 +30,8 @@ export default function ReviewList({
 
   useEffect(() => {
     const loadReviews = async () => {
-      // const res = await getReviews({ productId });
-      // setReviews(res.data);
+      const res = await getReviews({ productId });
+      setReviews(res.data);
     };
 
     loadReviews();
@@ -39,8 +39,8 @@ export default function ReviewList({
 
   // Reload reviews after created or updated
   const reload = async () => {
-    // const res = await getReviews({ productId });
-    // setReviews([...res.data]);
+    const res = await getReviews({ productId });
+    setReviews([...res.data]);
   };
 
   return (
@@ -75,7 +75,7 @@ export default function ReviewList({
             </CardHeader>
             <CardContent>
               <div className="flex space-x-4 text-sm text-muted-foreground">
-                {/* <Rating value={review.rating} /> */}
+                <Rating value={review.rating} />
                 <div className="flex items-center">
                   <User className="mr-1 h-3 w-3" />
                   {review.user ? review.user.name : "User"}
