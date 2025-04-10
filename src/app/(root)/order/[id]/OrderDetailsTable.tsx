@@ -27,18 +27,18 @@ import {
   updateOrderToPaidCOD,
   deliverOrder,
 } from "@/lib/actions/order.actions";
-// import StripePayment from "./stripe-payment";
+import StripePayment from "./StripePayment";
 
 export default function OrderDetailsTable({
   order,
   paypalClientId,
   isAdmin,
-}: // stripeClientSecret,
-{
+  stripeClientSecret,
+}: {
   order: Omit<Order, "paymentResult">;
   paypalClientId: string;
   isAdmin: boolean;
-  // stripeClientSecret: string | null;
+  stripeClientSecret: string | null;
 }) {
   const {
     id,
@@ -99,9 +99,9 @@ export default function OrderDetailsTable({
           startTransition(async () => {
             const res = await updateOrderToPaidCOD(order.id);
             if (res.success) {
-              toast.success("",{description: res.message,});
+              toast.success("", { description: res.message });
             } else {
-              toast.error("",{description: res.message,});
+              toast.error("", { description: res.message });
             }
           })
         }
@@ -123,9 +123,9 @@ export default function OrderDetailsTable({
           startTransition(async () => {
             const res = await deliverOrder(order.id);
             if (res.success) {
-              toast.success("",{description: res.message,});
+              toast.success("", { description: res.message });
             } else {
-              toast.error("",{description: res.message,});
+              toast.error("", { description: res.message });
             }
           })
         }
@@ -245,13 +245,13 @@ export default function OrderDetailsTable({
               )}
 
               {/* Stripe Payment */}
-              {/* {!isPaid && paymentMethod === "Stripe" && stripeClientSecret && (
+              {!isPaid && paymentMethod === "Stripe" && stripeClientSecret && (
                 <StripePayment
                   priceInCents={Number(order.totalPrice) * 100}
                   orderId={order.id}
                   clientSecret={stripeClientSecret}
                 />
-              )} */}
+              )}
 
               {/* Cash On Delivery */}
               {isAdmin && !isPaid && paymentMethod === "CashOnDelivery" && (
