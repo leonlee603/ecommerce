@@ -1,16 +1,16 @@
-import { FormEvent, useState } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
+import { FormEvent, useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
 import {
   Elements,
   LinkAuthenticationElement,
   PaymentElement,
   useElements,
   useStripe,
-} from '@stripe/react-stripe-js';
-import { useTheme } from 'next-themes';
-import { Button } from '@/components/ui/button';
-import { formatCurrency } from '@/lib/utils';
-import { SERVER_URL } from '@/lib/constants';
+} from "@stripe/react-stripe-js";
+import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
+import { formatCurrency } from "@/lib/utils";
+import { SERVER_URL } from "@/lib/constants";
 
 export default function StripePayment({
   priceInCents,
@@ -33,8 +33,8 @@ export default function StripePayment({
     const elements = useElements();
 
     const [isLoading, setIsLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
-    const [email, setEmail] = useState('');
+    const [errorMessage, setErrorMessage] = useState("");
+    const [email, setEmail] = useState("");
 
     const handleSubmit = async (e: FormEvent) => {
       e.preventDefault();
@@ -52,21 +52,21 @@ export default function StripePayment({
         })
         .then(({ error }) => {
           if (
-            error?.type === 'card_error' ||
-            error?.type === 'validation_error'
+            error?.type === "card_error" ||
+            error?.type === "validation_error"
           ) {
-            setErrorMessage(error?.message ?? 'An unknown error occurred');
+            setErrorMessage(error?.message ?? "An unknown error occurred");
           } else if (error) {
-            setErrorMessage('An unknown error occurred');
+            setErrorMessage("An unknown error occurred");
           }
         })
         .finally(() => setIsLoading(false));
     };
 
     return (
-      <form className='space-y-4' onSubmit={handleSubmit}>
-        <div className='text-xl'>Stripe Checkout</div>
-        {errorMessage && <div className='text-destructive'>{errorMessage}</div>}
+      <form className="space-y-4" onSubmit={handleSubmit}>
+        <div className="text-xl">Stripe Checkout</div>
+        {errorMessage && <div className="text-destructive">{errorMessage}</div>}
         <PaymentElement />
         <div>
           <LinkAuthenticationElement
@@ -74,12 +74,12 @@ export default function StripePayment({
           />
         </div>
         <Button
-          className='w-full'
-          size='lg'
+          className="w-full"
+          size="lg"
           disabled={stripe == null || elements == null || isLoading}
         >
           {isLoading
-            ? 'Purchasing...'
+            ? "Purchasing..."
             : `Purchase ${formatCurrency(priceInCents / 100)}`}
         </Button>
       </form>
@@ -92,13 +92,13 @@ export default function StripePayment({
         clientSecret,
         appearance: {
           theme:
-            theme === 'dark'
-              ? 'night'
-              : theme === 'light'
-              ? 'stripe'
-              : systemTheme === 'light'
-              ? 'stripe'
-              : 'night',
+            theme === "dark"
+              ? "night"
+              : theme === "light"
+              ? "stripe"
+              : systemTheme === "light"
+              ? "stripe"
+              : "night",
         },
       }}
       stripe={stripePromise}

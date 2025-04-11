@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import { getOrderById } from "@/lib/actions/order.actions";
 import { notFound } from "next/navigation";
-import OrderDetailsTable from './OrderDetailsTable';
+import OrderDetailsTable from "./OrderDetailsTable";
 import { ShippingAddress } from "../../../../../types";
-import { auth } from '../../../../../auth';
-import Stripe from 'stripe';
+import { auth } from "../../../../../auth";
+import Stripe from "stripe";
 
 export const metadata: Metadata = {
   title: "Order Details",
