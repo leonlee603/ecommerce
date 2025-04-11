@@ -59,3 +59,5 @@ export const reviewFormDefaultValues = {
   comment: "",
   rating: undefined,
 };
+
+export const SENDER_EMAIL = process.env.SENDER_EMAIL || "onboarding@resend.dev";
