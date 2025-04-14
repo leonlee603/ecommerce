@@ -1,3 +1,4 @@
+import DealCountdown from "@/components/DealCountdown";
 import IconBoxes from "@/components/IconBoxes";
 import ProductCarousel from "@/components/shared/product/ProductCarousel";
 import ProductList from "@/components/shared/product/ProductList";
@@ -24,6 +25,7 @@ export default async function Page() {
       )}
       <ProductList data={latestProducts} title="Newest Arrivals" limit={4} />
       <ViewAllProductsButton />
+      <DealCountdown />
       <IconBoxes />
     </>
   );
