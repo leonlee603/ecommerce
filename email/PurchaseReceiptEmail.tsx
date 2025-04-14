@@ -112,7 +112,7 @@ export default function PurchaseReceiptEmail({ order }: OrderInformationProps) {
                       className='rounded'
                       src={
                         item.image.startsWith('/')
-                          ? `${process.env.NEXT_PUBLIC_SERVER_URL}/public${item.image}`
+                          ? `${process.env.NEXT_PUBLIC_SERVER_URL}${item.image}`
                           : item.image
                       }
                     />
